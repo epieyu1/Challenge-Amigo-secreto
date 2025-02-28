@@ -3,31 +3,51 @@
 let amigos = [];
 
 function agregarAmigo(){
-    let agregarAmigos = document.getElementById('amigo');
-    nombreAmigos = agregarAmigos.value.trim();
+    let inptuAmigo = document.getElementById('amigo');
+    let nombreAmigo = inptuAmigo.value.trim();
 
-    if(nombreAmigos === ''){
-        alert('Ingresa un nombre valido')
-    } else {
-        amigos.push(nombreAmigos);
-        agregarAmigos.value = ''; // aqui limpiamos la entrada del input con la propiedad value = ''
-        console.log(amigos);
-        return;
+    if(nombreAmigo === ''){
+        alert('Ingresa un nombre')
     }
-};
 
-function sortearAmigo(){ 
-    if(amigos.length === 0){
-        alert('ingresa una lista de amigos')
+    amigos.push(nombreAmigo);
+    inptuAmigo.value = '';
+    inptuAmigo.focus();
+    anezarAmigos()
+    console.log(amigos);
+    return;
 
-        return;
-    }
-        
-        let indiceAleatorio = Math.floor(Math.random() * amigos.length);
+}
 
-        let indiceAmigo = amigos[indiceAleatorio];
+function anezarAmigos(){
+   let listaAmigos = document.getElementById('listaAmigos'); 
+   listaAmigos.innerHTML = '';
 
-        document.getElementById('resultado').innerHTML = 'El amigo ganador es:' + indiceAmigo;
-
+   for(let i=0; i < amigos.length; i++){
+    let item = document.createElement('li');
+    item.textContent = amigos[i];
+    listaAmigos.appendChild(item);
     
+
+   }
+
+}
+
+function sortearAmigo() {
+
+    if (amigos === 0 ) {
+
+        alert('Ingresa los nimbres de tus amigos');
+        return;
+    }
+
+   let indiceAleatorio = Math.floor(Math.random() * amigos.length);
+   let amigoGanador = amigos[indiceAleatorio];
+
+   document.getElementById('resultado').innerHTML = `El amigo ganador es ${amigoGanador}`
+
+   let limpiarinput = document.getElementById('listaAmigos');
+    limpiarinput.innerHTML = '';
+
+   return;
 }
